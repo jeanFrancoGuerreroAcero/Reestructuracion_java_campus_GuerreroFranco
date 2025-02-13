@@ -17,10 +17,10 @@ public class Franco {
         
         ArrayList<estudiantes> listaEstudiante = new ArrayList<>();
         
-        estudiantes estudiante1 = new estudiantes("1", "franco", "guerrero", "100099", "excelente", "java", "pedro");
-        estudiantes estudiante2 = new estudiantes("2", "camilo", "lizaraso", "100099", "peligro", "java", "stiven");
-        estudiantes estudiante3 = new estudiantes("3", "andres", "martinez", "100099", "inscrito", "java", "pedro");
-        estudiantes estudiante4 = new estudiantes("4", "sebastiam", "guerrero", "100099", "incrito", "java", "stiven");
+        estudiantes estudiante1 = new estudiantes("1", "franco", "guerrero", "100099", "excelente", "java", "pedro", "50");
+        estudiantes estudiante2 = new estudiantes("2", "camilo", "lizaraso", "100099", "peligro", "java", "stiven", "50");
+        estudiantes estudiante3 = new estudiantes("3", "andres", "martinez", "100099", "inscrito", "java", "pedro", "50");
+        estudiantes estudiante4 = new estudiantes("4", "sebastiam", "guerrero", "100099", "incrito", "java", "stiven", "50");
         
         listaEstudiante.add(estudiante1);
         listaEstudiante.add(estudiante2);
@@ -50,7 +50,7 @@ public class Franco {
                     System.out.println("1. Inscribir postulados");
                     System.out.println("2. Ingresar nota campers");
                     System.out.println("3. Ver campers");
-                    System.err.println("4. eliminar camper");
+                    System.out.println("4. eliminar camper");
                     System.out.println("5. Cerra sesion");
 
                     int opCoordinador = sc.nextInt();
@@ -82,10 +82,8 @@ public class Franco {
 
                         System.out.println("Ingresa el Trainer: ");
                         String trainerPostulado = sc.nextLine();
+                        
 
-                        estudiantes estudiante5 = new estudiantes(idPostulado, nombrePostulado, apellidoPostulado, cedulaPostulado, "inscrito", rutaPostulado, trainerPostulado);
-
-                        listaEstudiante.add(estudiante5);
 
 
                         for (int i = 0; i<listaEstudiante.size();i++){
@@ -114,9 +112,6 @@ public class Franco {
                                 estudiante1.setu(nuevoNombre);
                                 System.out.println("La nota fue cambiado a "+ estudiante1.getuser());
 
-                                for (int i = 0; i<listaEstudiante.size();i++){
-                                System.out.println(listaEstudiante.get(i).nombre);
-                                }
                                 break;
                             case 2:
                                 System.out.println("ingresa la nueva nota :");
@@ -125,9 +120,6 @@ public class Franco {
                                 estudiante2.setu(nuevoNombre1);
                                 System.out.println("La nota fue cambiado a "+ estudiante1.getuser());
 
-                                for (int i = 0; i<listaEstudiante.size();i++){
-                                System.out.println(listaEstudiante.get(i).nombre);
-                                }
                                 break;
                             case 3:
                                 System.out.println("ingresa la nueva nota :");
@@ -136,9 +128,6 @@ public class Franco {
                                 estudiante2.setu(nuevoNombre2);
                                 System.out.println("la nota fue cambiada a "+ estudiante2.getuser());
 
-                                for (int i = 0; i<listaEstudiante.size();i++){
-                                System.out.println(listaEstudiante.get(i).nombre);
-                                }
                                 break;
                             case 4:
                                 System.out.println("ingresa la nueva nota :");
@@ -147,9 +136,6 @@ public class Franco {
                                 estudiante3.setu(nuevoNombre3);
                                 System.out.println("La nota fue cambiada a "+ estudiante3.getuser());
 
-                                for (int i = 0; i<listaEstudiante.size();i++){
-                                System.out.println(listaEstudiante.get(i).nombre);
-                                }
                                 break;
                             case 5:
                                 System.out.println("ingresa la nueva nota :");
@@ -170,7 +156,7 @@ public class Franco {
                         System.out.println("");
 
                         for (int i = 0; i<listaEstudiante.size();i++){
-                            System.out.println(listaEstudiante.get(i).id + " " + listaEstudiante.get(i).nombre + " "+ listaEstudiante.get(i).apellido);
+                            System.out.println(listaEstudiante.get(i).id + " " + listaEstudiante.get(i).nombre + " "+ listaEstudiante.get(i).apellido +  " " + listaEstudiante.get(i).nota);
                         }
                     }
                     else if(opCoordinador == 4){
@@ -223,33 +209,109 @@ public class Franco {
                     System.out.println("------------------");
                     System.out.println("");
                     
-                    System.out.println("Que opcion quieres realizar :");
-                    System.out.println("1. Ver campers");
+                    boolean ceraTrainer = true;
                     
-                    int optrainer = sc.nextInt();
-                    
-                    switch (optrainer) {
-                        case 1:
+                    while(ceraTrainer){
+                        System.out.println("Que opcion quieres realizar :");
+                        System.out.println("1. Ver notas");
+                        System.out.println("2. actualizar notas");
+                        System.out.println("3. cerrar sesion");
+
+                        int optrainer = sc.nextInt();
+
+                        if(optrainer == 1){
                             for (int i = 0; i<listaEstudiante.size();i++){
-                                System.out.println("-" + listaEstudiante.get(i));
+                                    System.out.println("-" + listaEstudiante.get(i).nota);
+                                }
+                        }
+                        else if(optrainer == 2){
+                            System.out.println("A que camper quiere actualizarle la nota");
+
+                            for (int i = 0; i<listaEstudiante.size();i++){
+                                System.out.println(listaEstudiante.get(i).id + " " + listaEstudiante.get(i).nombre + " "+ listaEstudiante.get(i).apellido);
                             }
-                            break;
-                        default:
-                            throw new AssertionError();
-                    }
-                }
+
+                            int changeEstu = sc.nextInt();
+
+                            switch (changeEstu) {
+                                case 1:
+                                    System.out.println("Que nota desea ponerle");
+                                    sc.nextLine();
+                                    String nuevaNota = sc.nextLine();
+                                    estudiante1.setu(nuevaNota);
+                                    System.out.println("la nota fue cambiada a "+ estudiante1.getuser());
+                                    System.out.println(estudiante1.nota);
+                                    break;
+                                case 2:
+                                    System.out.println("Que nota desea ponerle");
+                                    sc.nextLine();
+                                    String nuevaNota2 = sc.nextLine();
+                                    estudiante2.setu(nuevaNota2);
+                                    System.out.println("la nota fue cambiada a "+ estudiante2.getuser());
+                                    break;
+                                case 3:
+                                    System.out.println("Que nota desea ponerle");
+                                    sc.nextLine();
+                                    String nuevaNota3 = sc.nextLine();
+                                    estudiante3.setu(nuevaNota3);
+                                    System.out.println("la nota fue cambiada a "+ estudiante3.getuser());
+                                    break;
+                                case 4:
+                                    System.out.println("Que nota desea ponerle");
+                                    sc.nextLine();
+                                    String nuevaNota4 = sc.nextLine();
+                                    estudiante4.setu(nuevaNota4);
+                                    System.out.println("la nota fue cambiada a "+ estudiante4.getuser());
+                                    break;
+                                default:
+                                    throw new AssertionError();     
+                            }
+                        }
+                        else if(optrainer == 3){
+                            System.out.println("vuelve pronto Trainer");
+                            ceraTrainer = false;
+                            
+                        }
                 else if(opcion == 3){
                     System.out.println("-----------------");
                     System.out.println("BIENVENIDO CAMPER");
                     System.out.println("-----------------");
                     System.out.println("");
                     
-                    System.out.println("TRAINER DISPONIBLES");
-                    System.out.println("1. PEDRO");
-                    System.out.println("2. JOSE");
-                    System.out.println("3. JHOLVER");
+                    System.out.println("1. Ver notas");
+                    
+                    int verNotaCamper = sc.nextInt();
+                    
+                    if(verNotaCamper == 1){
+                        for(int i = 0;i<listaEstudiante.size();i++){
+                            System.out.println(listaEstudiante.get(i).id + " " + listaEstudiante.get(i).nombre + " "+ listaEstudiante.get(i).apellido);
+                        }
+                        
+                        System.out.println("Que camper eres:");
+                        int queCamper1 = sc.nextInt();
+                        
+                        switch (queCamper1) {
+                            case 1:
+                                System.out.println(estudiante1.nota);
+                                break;
+                            case 2:
+                                System.out.println(estudiante3.nota);
+                                break;
+                            case 3:
+                                System.out.println(estudiante3.nota);
+                                break;
+                            case 4:
+                                System.out.println(estudiante4.nota);
+                                break;
+                            default:
+                                throw new AssertionError();
+                        }
+                    }
+                    
                 }    
             }
         } 
+            }
+        }
     }
 }
