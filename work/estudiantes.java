@@ -1,7 +1,6 @@
 
 package work;
 
-
 public class estudiantes {
     String id;
     String nombre;
@@ -23,6 +22,15 @@ public class estudiantes {
         this.ruta = ruta;
         this.trainer = trainer;
     }
+    
+    public String getuser(){
+        return nombre;
+    }
+    
+    public void setu(String nombre){
+        this.nombre = nombre;
+    }
+
     
 
     @Override
